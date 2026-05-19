@@ -241,13 +241,26 @@
             Suppliers
         </a>
 
-        <a href="/inventory" class="{{ request()->is('inventory*') ? 'active' : '' }}">
-            Inventory
-        </a>
+        @if(
+            auth()->user()->role == 'admin' ||
+            auth()->user()->role == 'storekeeper'
+        )
 
-        <a href="/stock-movements" class="{{ request()->is('stock-movements*') ? 'active' : '' }}">
-            Stock Movements
-        </a>
+            <a href="/inventory" class="{{ request()->is('inventory*') ? 'active' : '' }}">
+                Inventory
+            </a>
+
+            <a href="/stock-movements" class="{{ request()->is('stock-movements*') ? 'active' : '' }}">
+                Stock Movements
+            </a>
+
+        @endif
+
+        @if(auth()->user()->role == 'admin')
+
+            <a href="/users" class="{{ request()->is('users*') ? 'active' : '' }}">Users</a>
+
+        @endif
 
     </div>
 

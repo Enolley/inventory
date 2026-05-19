@@ -28,23 +28,41 @@ Route::middleware('auth')->group(function(){
 
     Route::resource('suppliers', App\Http\Controllers\SupplierController::class);
 
-    Route::resource('inventory', App\Http\Controllers\InventoryItemController::class);
-
-    Route::resource('stock-movements', App\Http\Controllers\StockMovementController::class);
-
-    Route::get('/inventory-report',
-        [App\Http\Controllers\InventoryItemController::class, 'report']
-    )->name('inventory.report');
-
-    Route::get('/inventory-export-csv',
-        [App\Http\Controllers\InventoryItemController::class, 'exportCsv']
-    )->name('inventory.export.csv');
-
-    Route::get('/inventory-pdf-report',
-        [App\Http\Controllers\InventoryItemController::class, 'pdfReport']
-    )->name('inventory.pdf.report');
-
     Route::post('/logout', [AuthController::class, 'logout']);
 
 });
+
+Route::middleware(['auth', 'role:admin,storekeeper'])
+    ->group(function () {
+
+        Route::resource(
+            'inventory',
+            App\Http\Controllers\InventoryItemController::class
+        );
+
+        Route::resource(
+            'stock-movements',
+            App\Http\Controllers\StockMovementController::class
+        );
+
+        Route::get('/inventory-report',
+            [App\Http\Controllers\InventoryItemController::class, 'report']
+        )->name('inventory.report');
+
+        Route::get('/inventory-export-csv',
+            [App\Http\Controllers\InventoryItemController::class, 'exportCsv']
+        )->name('inventory.export.csv');
+
+        Route::get('/inventory-pdf-report',
+            [App\Http\Controllers\InventoryItemController::class, 'pdfReport']
+        )->name('inventory.pdf.report');
+
+    });
+
+    Route::middleware(['auth', 'role:admin'])
+    ->group(function () {
+
+        Route::resource('users', App\Http\Controllers\UserController::class);
+
+    });
 
