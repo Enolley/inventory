@@ -13,6 +13,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
     <style>
 
         *{
@@ -196,6 +198,46 @@
 
         }
 
+    .logo{
+        font-size:28px;
+        font-weight:700;
+        color:white;
+        margin-bottom:40px;
+        text-align:center;
+        letter-spacing:1px;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:10px;
+    }
+
+    .sidebar a i{
+        width:20px;
+        text-align:center;
+        font-size:16px;
+    }
+
+    .sidebar a span{
+        flex:1;
+    }
+
+    @media(max-width:991px){
+
+        .sidebar a span{
+            display:none;
+        }
+
+        .logo{
+            font-size:18px;
+        }
+
+        .logo i{
+            font-size:22px;
+        }
+
+    }
+
     </style>
 
     @stack('styles')
@@ -210,6 +252,7 @@
     <div class="sidebar">
 
         <div class="logo">
+            <i class="fa-solid fa-boxes-stacked"></i>
             Inventory
         </div>
 
@@ -217,28 +260,52 @@
             Main Menu
         </div>
 
-        <a href="/dashboard" class="{{ request()->is('dashboard') ? 'active' : '' }}">
-            Dashboard
+        <a href="/dashboard"
+        class="{{ request()->is('dashboard') ? 'active' : '' }}">
+
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Dashboard</span>
+
         </a>
 
-        <a href="/locations" class="{{ request()->is('locations*') ? 'active' : '' }}">
-            Accounts
+        <a href="/locations"
+        class="{{ request()->is('locations*') ? 'active' : '' }}">
+
+            <i class="fa-solid fa-building"></i>
+            <span>Accounts</span>
+
         </a>
 
-        <a href="/categories" class="{{ request()->is('categories*') ? 'active' : '' }}">
-            Categories
+        <a href="/categories"
+        class="{{ request()->is('categories*') ? 'active' : '' }}">
+
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Categories</span>
+
         </a>
 
-        <a href="/brands" class="{{ request()->is('brands*') ? 'active' : '' }}">
-            Brands
+        <a href="/brands"
+        class="{{ request()->is('brands*') ? 'active' : '' }}">
+
+            <i class="fa-solid fa-tags"></i>
+            <span>Brands</span>
+
         </a>
 
-        <a href="/units" class="{{ request()->is('units*') ? 'active' : '' }}">
-            Units
+        <a href="/units"
+        class="{{ request()->is('units*') ? 'active' : '' }}">
+
+            <i class="fa-solid fa-ruler-combined"></i>
+            <span>Units</span>
+
         </a>
 
-        <a href="/suppliers" class="{{ request()->is('suppliers*') ? 'active' : '' }}">
-            Suppliers
+        <a href="/suppliers"
+        class="{{ request()->is('suppliers*') ? 'active' : '' }}">
+
+            <i class="fa-solid fa-truck-field"></i>
+            <span>Suppliers</span>
+
         </a>
 
         @if(
@@ -246,19 +313,33 @@
             auth()->user()->role == 'storekeeper'
         )
 
-            <a href="/inventory" class="{{ request()->is('inventory*') ? 'active' : '' }}">
-                Inventory
+            <a href="/inventory"
+            class="{{ request()->is('inventory*') ? 'active' : '' }}">
+
+                <i class="fa-solid fa-warehouse"></i>
+                <span>Inventory</span>
+
             </a>
 
-            <a href="/stock-movements" class="{{ request()->is('stock-movements*') ? 'active' : '' }}">
-                Stock Movements
+            <a href="/stock-movements"
+            class="{{ request()->is('stock-movements*') ? 'active' : '' }}">
+
+                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                <span>Stock Movements</span>
+
             </a>
 
         @endif
 
         @if(auth()->user()->role == 'admin')
 
-            <a href="/users" class="{{ request()->is('users*') ? 'active' : '' }}">Users</a>
+            <a href="/users"
+            class="{{ request()->is('users*') ? 'active' : '' }}">
+
+                <i class="fa-solid fa-users"></i>
+                <span>Users</span>
+
+            </a>
 
         @endif
 
