@@ -329,6 +329,8 @@
 
             </a>
 
+            <a href="/assets">Assets</a>
+
         @endif
 
         @if(auth()->user()->role == 'admin')

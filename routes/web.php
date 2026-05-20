@@ -57,6 +57,8 @@ Route::middleware(['auth', 'role:admin,storekeeper'])
             [App\Http\Controllers\InventoryItemController::class, 'pdfReport']
         )->name('inventory.pdf.report');
 
+        Route::resource('assets', App\Http\Controllers\AssetController::class);
+
     });
 
     Route::middleware(['auth', 'role:admin'])
